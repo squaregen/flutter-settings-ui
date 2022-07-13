@@ -65,7 +65,7 @@ class WebSettingsScrollSection extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children:
-        List.generate(tiles.length*2, (index) {
+        List.generate((tiles.length*2)-1, (index) {
           if (!((index+1) % 2 == 0)){
             return tiles[(index/2).truncate()];
           }
