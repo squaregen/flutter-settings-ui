@@ -25,7 +25,7 @@ class WebSettingsSection extends StatelessWidget {
     return Padding(
       padding: margin ?? EdgeInsets.zero,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (title != null)
             Container(
