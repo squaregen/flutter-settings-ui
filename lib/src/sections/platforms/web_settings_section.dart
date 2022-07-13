@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:settings_ui/src/tiles/abstract_settings_tile.dart';
+import 'package:settings_ui/src/utils/settings_theme.dart';
 
 class WebSettingsSection extends StatelessWidget {
   const WebSettingsSection({
@@ -25,7 +27,7 @@ class WebSettingsSection extends StatelessWidget {
     return Padding(
       padding: margin ?? EdgeInsets.zero,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (title != null)
             Container(
@@ -44,11 +46,11 @@ class WebSettingsSection extends StatelessWidget {
               ),
             ),
           Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            clipBehavior: Clip.antiAlias,
             elevation: 4,
             color: theme.themeData.settingsSectionBackground,
             child: buildTileList(),
+
           ),
         ],
       ),
