@@ -42,7 +42,7 @@ class SettingsList extends StatelessWidget {
   final List<AbstractSettingsSection> sections;
   final ApplicationType applicationType;
   final double? cacheExtent;
-  
+
   @override
   Widget build(BuildContext context) {
     DevicePlatform platform;
@@ -64,18 +64,21 @@ class SettingsList extends StatelessWidget {
       color: themeData.settingsListBackground,
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
-      child: SettingsTheme(
-        themeData: themeData,
-        platform: platform,
-        child: ListView.builder(
-          physics: physics,
-          shrinkWrap: shrinkWrap,
-          itemCount: sections.length,
-          cacheExtent: cacheExtent,
-          padding: contentPadding ?? calculateDefaultPadding(platform, context),
-          itemBuilder: (BuildContext context, int index) {
-            return sections[index];
-          },
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 810),
+        child: SettingsTheme(
+          themeData: themeData,
+          platform: platform,
+          child: ListView.builder(
+            physics: physics,
+            shrinkWrap: shrinkWrap,
+            itemCount: sections.length,
+            cacheExtent: cacheExtent,
+            padding: contentPadding ?? calculateDefaultPadding(platform, context),
+            itemBuilder: (BuildContext context, int index) {
+              return sections[index];
+            },
+          ),
         ),
       ),
     );
