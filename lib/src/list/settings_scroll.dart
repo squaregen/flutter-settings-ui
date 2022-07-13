@@ -1,22 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:settings_ui/src/list/settings_list.dart';
 import 'package:settings_ui/src/sections/abstract_settings_section.dart';
 import 'package:settings_ui/src/utils/automatic_keep_alive_setting_section.dart';
 import 'package:settings_ui/src/utils/platform_utils.dart';
 import 'package:settings_ui/src/utils/settings_theme.dart';
 import 'package:settings_ui/src/utils/theme_provider.dart';
 
-enum ApplicationType {
-  /// Use this parameter is you are using the MaterialApp
-  material,
 
-  /// Use this parameter is you are using the CupertinoApp
-  cupertino,
 
-  /// Use this parameter is you are using the MaterialApp for Android
-  /// and the CupertinoApp for iOS.
-  both,
-}
+
+
+
+
 
 class SettingsScroll extends StatelessWidget {
   const SettingsScroll({

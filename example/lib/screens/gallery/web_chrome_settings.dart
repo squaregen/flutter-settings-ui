@@ -10,7 +10,7 @@ class WebChromeSettings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Settings')),
-      body: SettingsList(
+      body: SettingsScroll(
         platform: DevicePlatform.web,
         sections: [
           SettingsSection(
