@@ -13,7 +13,7 @@ class WebChromeSettings extends StatelessWidget {
       body: SettingsScroll(
         platform: DevicePlatform.web,
         sections: [
-          SettingsSection(
+          SettingsScrollSection(
             title: Text('Auto-fill'),
             tiles: [
               SettingsTile.navigation(

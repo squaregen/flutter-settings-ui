@@ -2,6 +2,7 @@ library settings_ui;
 
 export 'package:settings_ui/src/list/settings_list.dart';
 export 'package:settings_ui/src/list/settings_scroll.dart';
+export 'package:settings_ui/src/sections/settings_scroll_section.dart';
 export 'package:settings_ui/src/sections/custom_settings_section.dart';
 export 'package:settings_ui/src/sections/settings_section.dart';
 export 'package:settings_ui/src/sections/abstract_settings_section.dart';
