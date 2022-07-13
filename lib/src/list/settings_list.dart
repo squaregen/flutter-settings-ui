@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:settings_ui/src/sections/abstract_settings_section.dart';
+import 'package:settings_ui/src/utils/automatic_keep_alive_setting_section.dart';
 import 'package:settings_ui/src/utils/platform_utils.dart';
 import 'package:settings_ui/src/utils/settings_theme.dart';
 import 'package:settings_ui/src/utils/theme_provider.dart';
@@ -30,6 +31,7 @@ class SettingsList extends StatelessWidget {
     this.applicationType = ApplicationType.material,
     this.cacheExtent,
     this.controller,
+    this.automaticKeepAlive,
     Key? key,
   }) : super(key: key);
 
@@ -44,6 +46,7 @@ class SettingsList extends StatelessWidget {
   final ApplicationType applicationType;
   final double? cacheExtent;
   final ScrollController? controller;
+  final bool? automaticKeepAlive;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +82,9 @@ class SettingsList extends StatelessWidget {
             cacheExtent: cacheExtent,
             padding: contentPadding ?? calculateDefaultPadding(platform, context),
             itemBuilder: (BuildContext context, int index) {
+              if (automaticKeepAlive ?? false){
+                return AutomaticKeepAliveProxy(child: sections[index]);
+              }
               return sections[index];
             },
           ),
