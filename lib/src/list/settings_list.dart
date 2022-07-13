@@ -28,6 +28,7 @@ class SettingsList extends StatelessWidget {
     this.brightness,
     this.contentPadding,
     this.applicationType = ApplicationType.material,
+    this.cacheExtent,
     Key? key,
   }) : super(key: key);
 
@@ -40,7 +41,8 @@ class SettingsList extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final List<AbstractSettingsSection> sections;
   final ApplicationType applicationType;
-
+  final double? cacheExtent;
+  
   @override
   Widget build(BuildContext context) {
     DevicePlatform platform;
@@ -69,6 +71,7 @@ class SettingsList extends StatelessWidget {
           physics: physics,
           shrinkWrap: shrinkWrap,
           itemCount: sections.length,
+          cacheExtent: cacheExtent,
           padding: contentPadding ?? calculateDefaultPadding(platform, context),
           itemBuilder: (BuildContext context, int index) {
             return sections[index];
