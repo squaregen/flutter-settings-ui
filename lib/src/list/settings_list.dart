@@ -97,7 +97,7 @@ class SettingsList extends StatelessWidget {
         case DevicePlatform.windows:
           return EdgeInsets.symmetric(horizontal: padding);
         case DevicePlatform.web:
-          return EdgeInsets.symmetric(vertical: 20, horizontal: padding);
+          return EdgeInsets.zero;
         case DevicePlatform.device:
           throw Exception(
             'You can\'t use the DevicePlatform.device in this context. '
