@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/src/sections/abstract_settings_section.dart';
+import 'package:settings_ui/src/sections/platforms/android_settings_scroll_section.dart';
 import 'package:settings_ui/src/sections/platforms/android_settings_section.dart';
+import 'package:settings_ui/src/sections/platforms/ios_settings_scroll_section.dart';
 import 'package:settings_ui/src/sections/platforms/ios_settings_section.dart';
 import 'package:settings_ui/src/sections/platforms/web_settings_scroll_section.dart';
 import 'package:settings_ui/src/tiles/abstract_settings_tile.dart';
@@ -27,7 +29,7 @@ class SettingsScrollSection extends AbstractSettingsSection {
       case DevicePlatform.android:
       case DevicePlatform.fuchsia:
       case DevicePlatform.linux:
-        return AndroidSettingsSection(
+        return AndroidSettingsScrollSection(
           title: title,
           tiles: tiles,
           margin: margin,
@@ -35,7 +37,7 @@ class SettingsScrollSection extends AbstractSettingsSection {
       case DevicePlatform.iOS:
       case DevicePlatform.macOS:
       case DevicePlatform.windows:
-        return IOSSettingsSection(
+        return IOSSettingsScrollSection(
           title: title,
           tiles: tiles,
           margin: margin,
