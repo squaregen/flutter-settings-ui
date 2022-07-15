@@ -104,7 +104,7 @@ class SettingsList extends StatelessWidget {
         case DevicePlatform.iOS:
         case DevicePlatform.macOS:
         case DevicePlatform.windows:
-          return EdgeInsets.symmetric(horizontal: padding);
+          return EdgeInsets.symmetric(horizontal: 0);
         case DevicePlatform.web:
           return EdgeInsets.zero;
         case DevicePlatform.device:
