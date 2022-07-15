@@ -96,7 +96,7 @@ class SettingsScroll extends StatelessWidget {
   EdgeInsets calculateDefaultPadding(
       DevicePlatform platform, BuildContext context) {
     if (MediaQuery.of(context).size.width > 810) {
-      double padding = (MediaQuery.of(context).size.width - 810) / 2;
+     // double padding = (MediaQuery.of(context).size.width - 810) / 2;
       switch (platform) {
         case DevicePlatform.android:
         case DevicePlatform.fuchsia:
@@ -104,7 +104,7 @@ class SettingsScroll extends StatelessWidget {
         case DevicePlatform.iOS:
         case DevicePlatform.macOS:
         case DevicePlatform.windows:
-          return EdgeInsets.symmetric(horizontal: padding);
+          return EdgeInsets.symmetric(horizontal: 0);
         case DevicePlatform.web:
           return EdgeInsets.zero;
         case DevicePlatform.device:
@@ -114,7 +114,7 @@ class SettingsScroll extends StatelessWidget {
           );
         default:
           return EdgeInsets.symmetric(
-            horizontal: padding,
+            horizontal: 0,
           );
       }
     }
