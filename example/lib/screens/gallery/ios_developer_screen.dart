@@ -18,11 +18,11 @@ class _IosDeveloperScreen extends State<IosDeveloperScreen> {
       navigationBar: CupertinoNavigationBar(middle: Text('Developer')),
       child: SafeArea(
         bottom: false,
-        child: SettingsList(
+        child: SettingsScroll(
           applicationType: ApplicationType.cupertino,
           platform: DevicePlatform.iOS,
           sections: [
-            SettingsSection(
+            SettingsScrollSection(
               title: Text('APPEARANCE'),
               tiles: [
                 SettingsTile.switchTile(
@@ -36,7 +36,7 @@ class _IosDeveloperScreen extends State<IosDeveloperScreen> {
                 ),
               ],
             ),
-            SettingsSection(
+            SettingsScrollSection(
               title: Text('DISPLAY ZOOM'),
               tiles: [
                 SettingsTile.navigation(
@@ -51,7 +51,7 @@ class _IosDeveloperScreen extends State<IosDeveloperScreen> {
                 ),
               ],
             ),
-            SettingsSection(
+            SettingsScrollSection(
               title: Text('UI AUTOMATION'),
               tiles: [
                 SettingsTile.switchTile(
@@ -69,7 +69,7 @@ class _IosDeveloperScreen extends State<IosDeveloperScreen> {
                 ),
               ],
             ),
-            SettingsSection(
+            SettingsScrollSection(
               title: Text('STATE RESTORATION TESTING'),
               tiles: [
                 SettingsTile.switchTile(
@@ -86,7 +86,7 @@ class _IosDeveloperScreen extends State<IosDeveloperScreen> {
                 ),
               ],
             ),
-            SettingsSection(
+            SettingsScrollSection(
               title: Text('IAD DEVELOPER APP TESTING'),
               tiles: [
                 SettingsTile.navigation(

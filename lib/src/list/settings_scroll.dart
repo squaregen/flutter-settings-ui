@@ -38,7 +38,7 @@ class SettingsScroll extends StatelessWidget {
   final SettingsThemeData? darkTheme;
   final Brightness? brightness;
   final EdgeInsetsGeometry? contentPadding;
-  final List<AbstractSettingsSection> sections;
+  final List<Widget> sections;
   final ApplicationType applicationType;
   final double? cacheExtent;
   final ScrollController? controller;
