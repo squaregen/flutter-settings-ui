@@ -15,6 +15,7 @@ class WebSettingsTile extends StatelessWidget {
     required this.activeSwitchColor,
     required this.enabled,
     required this.trailing,
+    this.color,
     Key? key,
   }) : super(key: key);
 
@@ -29,6 +30,7 @@ class WebSettingsTile extends StatelessWidget {
   final bool enabled;
   final Widget? trailing;
   final Color? activeSwitchColor;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class WebSettingsTile extends StatelessWidget {
     return IgnorePointer(
       ignoring: !enabled,
       child: Material(
-        color: Colors.transparent,
+        color: color ?? Colors.transparent,
         child: InkWell(
           onTap: cantShowAnimation
               ? null

@@ -6,6 +6,7 @@ class AndroidSettingsScrollSection extends StatelessWidget {
   const AndroidSettingsScrollSection({
     required this.tiles,
     required this.margin,
+    this.color,
     this.title,
     Key? key,
   }) : super(key: key);
@@ -13,6 +14,7 @@ class AndroidSettingsScrollSection extends StatelessWidget {
   final List<AbstractSettingsTile> tiles;
   final EdgeInsetsDirectional? margin;
   final Widget? title;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class AndroidSettingsScrollSection extends StatelessWidget {
           ),
         ),
         Container(
-          color: theme.themeData.settingsSectionBackground,
+          color: color ?? theme.themeData.settingsSectionBackground,
           child: tileList,
         ),
       ],

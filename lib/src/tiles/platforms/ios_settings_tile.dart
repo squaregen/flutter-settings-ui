@@ -15,6 +15,7 @@ class IOSSettingsTile extends StatefulWidget {
     required this.activeSwitchColor,
     required this.enabled,
     required this.trailing,
+    this.color,
     Key? key,
   }) : super(key: key);
 
@@ -29,6 +30,7 @@ class IOSSettingsTile extends StatefulWidget {
   final bool enabled;
   final Color? activeSwitchColor;
   final Widget? trailing;
+final Color? color;
 
   @override
   _IOSSettingsTileState createState() => _IOSSettingsTileState();
@@ -105,7 +107,7 @@ class _IOSSettingsTileState extends State<IOSSettingsTile> {
         bottom: additionalInfo.needToShowDivider ? 24 : 8 * scaleFactor,
       ),
       decoration: BoxDecoration(
-        color: theme.themeData.settingsListBackground,
+        color: widget.color ?? theme.themeData.settingsListBackground,
       ),
       child: DefaultTextStyle(
         style: TextStyle(

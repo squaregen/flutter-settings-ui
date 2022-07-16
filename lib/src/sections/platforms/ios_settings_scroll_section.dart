@@ -7,12 +7,14 @@ class IOSSettingsScrollSection extends StatelessWidget {
     required this.tiles,
     required this.margin,
     required this.title,
+    this.color,
     Key? key,
   }) : super(key: key);
 
   final List<AbstractSettingsTile> tiles;
   final EdgeInsetsDirectional? margin;
   final Widget? title;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {

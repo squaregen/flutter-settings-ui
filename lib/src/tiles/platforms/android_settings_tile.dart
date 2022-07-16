@@ -14,6 +14,7 @@ class AndroidSettingsTile extends StatelessWidget {
     required this.activeSwitchColor,
     required this.enabled,
     required this.trailing,
+    this.color,
     Key? key,
   }) : super(key: key);
 
@@ -28,6 +29,7 @@ class AndroidSettingsTile extends StatelessWidget {
   final bool enabled;
   final Color? activeSwitchColor;
   final Widget? trailing;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class AndroidSettingsTile extends StatelessWidget {
     return IgnorePointer(
       ignoring: !enabled,
       child: Material(
-        color: Colors.transparent,
+        color: color ?? Colors.transparent,
         child: InkWell(
           onTap: cantShowAnimation
               ? null

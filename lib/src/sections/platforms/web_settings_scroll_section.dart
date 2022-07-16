@@ -8,12 +8,14 @@ class WebSettingsScrollSection extends StatelessWidget {
     required this.tiles,
     required this.margin,
     required this.title,
+    this.color,
     Key? key,
   }) : super(key: key);
 
   final List<AbstractSettingsTile> tiles;
   final EdgeInsetsDirectional? margin;
   final Widget? title;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class WebSettingsScrollSection extends StatelessWidget {
           Card(
             clipBehavior: Clip.antiAlias,
             elevation: 4,
-            color: theme.themeData.settingsSectionBackground,
+            color: color ?? theme.themeData.settingsSectionBackground,
             child: buildTileList(),
 
           ),
