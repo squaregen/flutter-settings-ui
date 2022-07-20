@@ -7,13 +7,6 @@ import 'package:settings_ui/src/utils/platform_utils.dart';
 import 'package:settings_ui/src/utils/settings_theme.dart';
 import 'package:settings_ui/src/utils/theme_provider.dart';
 
-
-
-
-
-
-
-
 class SettingsScroll extends StatelessWidget {
   const SettingsScroll({
     required this.sections,
@@ -28,6 +21,7 @@ class SettingsScroll extends StatelessWidget {
     this.cacheExtent,
     this.controller,
     this.automaticKeepAlive,
+    this.alignment,
     Key? key,
   }) : super(key: key);
 
@@ -43,6 +37,7 @@ class SettingsScroll extends StatelessWidget {
   final double? cacheExtent;
   final ScrollController? controller;
   final bool? automaticKeepAlive;
+  final Alignment? alignment;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +59,7 @@ class SettingsScroll extends StatelessWidget {
     return Container(
       color: themeData.settingsListBackground,
       width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
+      alignment: alignment ?? Alignment.topCenter,
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 810),
         child: SettingsTheme(

@@ -39,7 +39,7 @@ class WebChromeSettings extends StatelessWidget {
               ),
             ],
           ),
-          SettingsSection(
+      /*    SettingsSection(
             title: Text('Privacy and security'),
             tiles: [
               SettingsTile.navigation(
@@ -76,7 +76,7 @@ class WebChromeSettings extends StatelessWidget {
                 description: Text('Trial features are on'),
               ),
             ],
-          ),
+          ),*/
         ],
       ),
     );
