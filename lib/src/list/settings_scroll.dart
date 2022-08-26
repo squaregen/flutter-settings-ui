@@ -61,7 +61,7 @@ class SettingsScroll extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       alignment: alignment ?? Alignment.topCenter,
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 810),
+        constraints: BoxConstraints(),
         child: SettingsTheme(
           themeData: themeData,
           platform: platform,
