@@ -85,6 +85,7 @@ class WebSettingsTile extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          if (title!=null)
                           DefaultTextStyle(
                             style: TextStyle(
                               color: theme.themeData.settingsTileTextColor,
