@@ -67,7 +67,7 @@ class SettingsTile extends AbstractSettingsTile {
   final Widget? trailing;
 
   /// The widget at the center of the tile
-  final Widget title;
+  final Widget? title;
 
   /// The widget at the bottom of the [title]
   final Widget? description;
