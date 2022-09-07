@@ -59,7 +59,7 @@ class SeparatedSettingsList extends StatelessWidget {
     return Container(
       color: themeData.settingsListBackground,
       width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
+      alignment: Alignment.topCenter,
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 810),
         child: SettingsTheme(
