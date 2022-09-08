@@ -15,6 +15,8 @@ class IOSSettingsTile extends StatefulWidget {
     required this.activeSwitchColor,
     required this.enabled,
     required this.trailing,
+    this.onLongPress,
+    this.onDoublePressed,
     this.color,
     Key? key,
   }) : super(key: key);
@@ -31,6 +33,8 @@ class IOSSettingsTile extends StatefulWidget {
   final Color? activeSwitchColor;
   final Widget? trailing;
 final Color? color;
+  final Function(BuildContext context)? onDoublePressed;
+  final Function(BuildContext context)? onLongPress;
 
   @override
   _IOSSettingsTileState createState() => _IOSSettingsTileState();
@@ -198,6 +202,12 @@ class _IOSSettingsTileState extends State<IOSSettingsTile> {
           widget.onPressed == null ? null : changePressState(isPressed: false),
       onTapCancel: () =>
           widget.onPressed == null ? null : changePressState(isPressed: false),
+      onDoubleTap: widget.onDoublePressed!=null ? (){
+        widget.onDoublePressed?.call(context);
+      } : null,
+      onLongPress: widget.onLongPress!=null ? (){
+        widget.onLongPress?.call(context);
+      } : null,
       child: Container(
         color: isPressed
             ? theme.themeData.tileHighlightColor

@@ -15,6 +15,8 @@ class WebSettingsTile extends StatelessWidget {
     required this.activeSwitchColor,
     required this.enabled,
     required this.trailing,
+    this.onDoublePressed,
+    this.onLongPress,
     this.color,
     Key? key,
   }) : super(key: key);
@@ -24,6 +26,8 @@ class WebSettingsTile extends StatelessWidget {
   final Widget? title;
   final Widget? description;
   final Function(BuildContext context)? onPressed;
+  final Function(BuildContext context)? onDoublePressed;
+  final Function(BuildContext context)? onLongPress;
   final Function(bool value)? onToggle;
   final Widget? value;
   final bool initialValue;
@@ -58,6 +62,12 @@ class WebSettingsTile extends StatelessWidget {
                       onPressed?.call(context);
                     }
                   },
+            onDoubleTap: onDoublePressed!=null ? (){
+              onDoublePressed?.call(context);
+              } : null,
+            onLongPress: onLongPress!=null ? (){
+              onLongPress?.call(context);
+            } : null,
             highlightColor: theme.themeData.tileHighlightColor,
             child: Container(
               child: Row(

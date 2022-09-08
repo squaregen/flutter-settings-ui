@@ -15,6 +15,8 @@ class AndroidSettingsTile extends StatelessWidget {
     required this.enabled,
     required this.trailing,
     this.color,
+    this.onDoublePressed,
+    this.onLongPress,
     Key? key,
   }) : super(key: key);
 
@@ -30,7 +32,8 @@ class AndroidSettingsTile extends StatelessWidget {
   final Color? activeSwitchColor;
   final Widget? trailing;
   final Color? color;
-
+  final Function(BuildContext context)? onDoublePressed;
+  final Function(BuildContext context)? onLongPress;
   @override
   Widget build(BuildContext context) {
     final theme = SettingsTheme.of(context);
@@ -54,6 +57,12 @@ class AndroidSettingsTile extends StatelessWidget {
                     onPressed?.call(context);
                   }
                 },
+          onDoubleTap: onDoublePressed!=null ? (){
+            onDoublePressed?.call(context);
+          } : null,
+          onLongPress: onLongPress!=null ? (){
+            onLongPress?.call(context);
+          } : null,
           highlightColor: theme.themeData.tileHighlightColor,
           child: Container(
             child: Row(

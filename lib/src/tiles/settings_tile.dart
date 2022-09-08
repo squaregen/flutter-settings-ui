@@ -18,6 +18,8 @@ class SettingsTile extends AbstractSettingsTile {
     this.onPressed,
     this.enabled = true,
     this.color,
+    this.onLongPress,
+    this.onDoublePressed,
     Key? key,
   }) : super(key: key) {
     onToggle = null;
@@ -35,6 +37,8 @@ class SettingsTile extends AbstractSettingsTile {
     this.onPressed,
     this.enabled = true,
     this.color,
+    this.onLongPress,
+    this.onDoublePressed,
     Key? key,
   }) : super(key: key) {
     onToggle = null;
@@ -54,6 +58,8 @@ class SettingsTile extends AbstractSettingsTile {
     this.onPressed,
     this.enabled = true,
     this.color,
+    this.onLongPress,
+    this.onDoublePressed,
     Key? key,
   }) : super(key: key) {
     value = null;
@@ -82,6 +88,8 @@ class SettingsTile extends AbstractSettingsTile {
   late final bool? initialValue;
   late final bool enabled;
   late final Color? color;
+  final Function(BuildContext context)? onDoublePressed;
+  final Function(BuildContext context)? onLongPress;
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +102,8 @@ class SettingsTile extends AbstractSettingsTile {
         return AndroidSettingsTile(
           description: description,
           onPressed: onPressed,
+          onLongPress: onLongPress,
+          onDoublePressed: onDoublePressed,
           onToggle: onToggle,
           tileType: tileType,
           value: value,
@@ -112,6 +122,8 @@ class SettingsTile extends AbstractSettingsTile {
           description: description,
           onPressed: onPressed,
           onToggle: onToggle,
+          onLongPress: onLongPress,
+          onDoublePressed: onDoublePressed,
           tileType: tileType,
           value: value,
           leading: leading,
@@ -126,6 +138,8 @@ class SettingsTile extends AbstractSettingsTile {
         return WebSettingsTile(
           description: description,
           onPressed: onPressed,
+          onLongPress: onLongPress,
+          onDoublePressed: onDoublePressed,
           onToggle: onToggle,
           tileType: tileType,
           value: value,
