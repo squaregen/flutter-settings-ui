@@ -36,10 +36,19 @@ class WebSettingsTile extends StatelessWidget {
   final Color? activeSwitchColor;
   final Color? color;
 
+
+
   @override
   Widget build(BuildContext context) {
+    double leftPadding=24;
+    double rightPadding=24;
+
     final theme = SettingsTheme.of(context);
     final scaleFactor = MediaQuery.of(context).textScaleFactor;
+    if (MediaQuery.of(context).size.width < 600){
+        leftPadding = 8;
+        rightPadding = 8;
+    }
 
     final cantShowAnimation = tileType == SettingsTileType.switchTile
         ? onToggle == null && onPressed == null
@@ -74,8 +83,8 @@ class WebSettingsTile extends StatelessWidget {
                 children: [
                   if (leading != null)
                     Padding(
-                      padding: const EdgeInsetsDirectional.only(
-                        start: 24,
+                      padding: EdgeInsetsDirectional.only(
+                        start: leftPadding,
                       ),
                       child: IconTheme(
                         data: IconTheme.of(context).copyWith(
@@ -87,8 +96,8 @@ class WebSettingsTile extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.only(
-                        start: 24,
-                        end: 24,
+                        start: leftPadding,
+                        end: rightPadding,
                         bottom: 19 * scaleFactor,
                         top: 19 * scaleFactor,
                       ),
