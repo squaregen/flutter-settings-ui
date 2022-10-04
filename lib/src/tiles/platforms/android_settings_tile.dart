@@ -42,7 +42,12 @@ class AndroidSettingsTile extends StatelessWidget {
     final cantShowAnimation = tileType == SettingsTileType.switchTile
         ? onToggle == null && onPressed == null
         : onPressed == null;
-
+    double leftPadding=24;
+    double rightPadding=24;
+    if (MediaQuery.of(context).size.width < 600){
+      leftPadding = 8;
+      rightPadding = 8;
+    }
     return IgnorePointer(
       ignoring: !enabled,
       child: Material(
@@ -69,7 +74,7 @@ class AndroidSettingsTile extends StatelessWidget {
               children: [
                 if (leading != null)
                   Padding(
-                    padding: const EdgeInsetsDirectional.only(start: 24),
+                    padding: EdgeInsetsDirectional.only(start: leftPadding),
                     child: IconTheme(
                       data: IconTheme.of(context).copyWith(
                         color: enabled
@@ -82,8 +87,8 @@ class AndroidSettingsTile extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsetsDirectional.only(
-                      start: 24,
-                      end: 24,
+                      start: leftPadding,
+                      end: leftPadding,
                       bottom: 19 * scaleFactor,
                       top: 19 * scaleFactor,
                     ),

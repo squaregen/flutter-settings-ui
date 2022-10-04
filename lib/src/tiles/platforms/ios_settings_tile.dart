@@ -101,12 +101,17 @@ class _IOSSettingsTileState extends State<IOSSettingsTile> {
     required IOSSettingsTileAdditionalInfo additionalInfo,
   }) {
     final scaleFactor = MediaQuery.of(context).textScaleFactor;
-
+    double leftPadding=18;
+    double rightPadding=18;
+    if (MediaQuery.of(context).size.width < 600){
+      leftPadding = 9;
+      rightPadding = 9;
+    }
     return Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.only(
-        left: 18,
-        right: 18,
+        left: leftPadding,
+        right: rightPadding,
         top: 8 * scaleFactor,
         bottom: additionalInfo.needToShowDivider ? 24 : 8 * scaleFactor,
       ),
