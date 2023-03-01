@@ -14,7 +14,6 @@ class SeparatedSettingsList extends StatelessWidget {
     required this.sections,
     this.shrinkWrap = false,
     this.physics,
-    this.platform,
     this.lightTheme,
     this.darkTheme,
     this.brightness,
@@ -28,7 +27,6 @@ class SeparatedSettingsList extends StatelessWidget {
 
   final bool shrinkWrap;
   final ScrollPhysics? physics;
-  final DevicePlatform? platform;
   final SettingsThemeData? lightTheme;
   final SettingsThemeData? darkTheme;
   final Brightness? brightness;
@@ -41,14 +39,9 @@ class SeparatedSettingsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DevicePlatform platform;
-    if (this.platform == null || this.platform == DevicePlatform.device) {
-      platform = PlatformUtils.detectPlatform(context);
-    } else {
-      platform = this.platform!;
-    }
 
-    final brightness = calculateBrightness(context);
+
+    final brightness = Theme.of(context).brightness;
 
     final themeData = ThemeProvider.getTheme(
       context: context,
@@ -69,7 +62,7 @@ class SeparatedSettingsList extends StatelessWidget {
             shrinkWrap: shrinkWrap,
             itemCount: sections.length,
             cacheExtent: cacheExtent,
-            padding: contentPadding ?? calculateDefaultPadding(platform, context),
+            padding: contentPadding ?? calculateDefaultPadding(context),
             itemBuilder: (BuildContext context, int index) {
               if (automaticKeepAlive ?? false){
                 return AutomaticKeepAliveProxy(child: sections[index]);
@@ -88,63 +81,17 @@ class SeparatedSettingsList extends StatelessWidget {
     );
   }
 
+
+
   EdgeInsets calculateDefaultPadding(
-      DevicePlatform platform, BuildContext context) {
+      BuildContext context) {
     if (MediaQuery.of(context).size.width > 810) {
-     // double padding = (MediaQuery.of(context).size.width - 810) / 2;
-      switch (platform) {
-        case DevicePlatform.android:
-        case DevicePlatform.fuchsia:
-        case DevicePlatform.linux:
-        case DevicePlatform.iOS:
-        case DevicePlatform.macOS:
-        case DevicePlatform.windows:
-          return EdgeInsets.symmetric(horizontal: 0);
-        case DevicePlatform.web:
-          return EdgeInsets.zero;
-        case DevicePlatform.device:
-          throw Exception(
-            'You can\'t use the DevicePlatform.device in this context. '
-            'Incorrect platform: SettingsList.calculateDefaultPadding',
-          );
-        default:
-          return EdgeInsets.symmetric(
-            horizontal: 0,
-          );
-      }
+      return EdgeInsets.zero;
+    } else {
+      return EdgeInsets.symmetric(vertical: 20);
     }
-    switch (platform) {
-      case DevicePlatform.android:
-      case DevicePlatform.fuchsia:
-      case DevicePlatform.linux:
-      case DevicePlatform.iOS:
-      case DevicePlatform.macOS:
-      case DevicePlatform.windows:
-        return EdgeInsets.symmetric(vertical: 0);
-      case DevicePlatform.web:
-        return EdgeInsets.symmetric(vertical: 20);
-      case DevicePlatform.device:
-        throw Exception(
-          'You can\'t use the DevicePlatform.device in this context. '
-          'Incorrect platform: SettingsList.calculateDefaultPadding',
-        );
-    }
+
+
   }
 
-  Brightness calculateBrightness(BuildContext context) {
-    final materialBrightness = Theme.of(context).brightness;
-    final cupertinoBrightness = CupertinoTheme.of(context).brightness ??
-        MediaQuery.of(context).platformBrightness;
-
-    switch (applicationType) {
-      case ApplicationType.material:
-        return materialBrightness;
-      case ApplicationType.cupertino:
-        return cupertinoBrightness;
-      case ApplicationType.both:
-        return platform != DevicePlatform.iOS
-            ? materialBrightness
-            : cupertinoBrightness;
-    }
-  }
 }
