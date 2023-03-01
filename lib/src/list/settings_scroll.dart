@@ -52,7 +52,6 @@ class SettingsScroll extends StatelessWidget {
 
     final themeData = ThemeProvider.getTheme(
       context: context,
-      platform: platform,
       brightness: brightness,
     ).merge(theme: brightness == Brightness.dark ? darkTheme : lightTheme);
 
@@ -64,7 +63,6 @@ class SettingsScroll extends StatelessWidget {
         constraints: BoxConstraints(),
         child: SettingsTheme(
           themeData: themeData,
-          platform: platform,
           child:
           SingleChildScrollView(
             controller: controller,

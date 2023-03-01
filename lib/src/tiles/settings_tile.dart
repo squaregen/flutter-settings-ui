@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:settings_ui/src/tiles/abstract_settings_tile.dart';
-import 'package:settings_ui/src/tiles/platforms/android_settings_tile.dart';
-import 'package:settings_ui/src/tiles/platforms/ios_settings_tile.dart';
 import 'package:settings_ui/src/tiles/platforms/web_settings_tile.dart';
-import 'package:settings_ui/src/utils/platform_utils.dart';
-import 'package:settings_ui/src/utils/settings_theme.dart';
+
 
 enum SettingsTileType { simpleTile, switchTile, navigationTile }
 
@@ -93,69 +90,21 @@ class SettingsTile extends AbstractSettingsTile {
 
   @override
   Widget build(BuildContext context) {
-    final theme = SettingsTheme.of(context);
-
-    switch (theme.platform) {
-      case DevicePlatform.android:
-      case DevicePlatform.fuchsia:
-      case DevicePlatform.linux:
-        return AndroidSettingsTile(
-          description: description,
-          onPressed: onPressed,
-          onLongPress: onLongPress,
-          onDoublePressed: onDoublePressed,
-          onToggle: onToggle,
-          tileType: tileType,
-          value: value,
-          leading: leading,
-          title: title,
-          enabled: enabled,
-          activeSwitchColor: activeSwitchColor,
-          initialValue: initialValue ?? false,
-          trailing: trailing,
-          color: color,
-        );
-      case DevicePlatform.iOS:
-      case DevicePlatform.macOS:
-      case DevicePlatform.windows:
-        return IOSSettingsTile(
-          description: description,
-          onPressed: onPressed,
-          onToggle: onToggle,
-          onLongPress: onLongPress,
-          onDoublePressed: onDoublePressed,
-          tileType: tileType,
-          value: value,
-          leading: leading,
-          title: title,
-          trailing: trailing,
-          enabled: enabled,
-          activeSwitchColor: activeSwitchColor,
-          initialValue: initialValue ?? false,
-          color: color,
-        );
-      case DevicePlatform.web:
-        return WebSettingsTile(
-          description: description,
-          onPressed: onPressed,
-          onLongPress: onLongPress,
-          onDoublePressed: onDoublePressed,
-          onToggle: onToggle,
-          tileType: tileType,
-          value: value,
-          leading: leading,
-          title: title,
-          enabled: enabled,
-          trailing: trailing,
-          activeSwitchColor: activeSwitchColor,
-          initialValue: initialValue ?? false,
-          color: color,
-        );
-      case DevicePlatform.device:
-        throw Exception(
-          'You can\'t use the DevicePlatform.device in this context. '
-          'Incorrect platform: SettingsTile.build',
-        );
-    }
+    return WebSettingsTile(
+      description: description,
+      onPressed: onPressed,
+      onLongPress: onLongPress,
+      onDoublePressed: onDoublePressed,
+      onToggle: onToggle,
+      tileType: tileType,
+      value: value,
+      leading: leading,
+      title: title,
+      enabled: enabled,
+      trailing: trailing,
+      activeSwitchColor: activeSwitchColor,
+      initialValue: initialValue ?? false,
+      color: color,
+    );
   }
 }

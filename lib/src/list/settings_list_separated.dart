@@ -52,7 +52,6 @@ class SeparatedSettingsList extends StatelessWidget {
 
     final themeData = ThemeProvider.getTheme(
       context: context,
-      platform: platform,
       brightness: brightness,
     ).merge(theme: brightness == Brightness.dark ? darkTheme : lightTheme);
 
@@ -64,7 +63,6 @@ class SeparatedSettingsList extends StatelessWidget {
         constraints: BoxConstraints(maxWidth: 810),
         child: SettingsTheme(
           themeData: themeData,
-          platform: platform,
           child: ListView.separated(
             controller: controller,
             physics: physics,

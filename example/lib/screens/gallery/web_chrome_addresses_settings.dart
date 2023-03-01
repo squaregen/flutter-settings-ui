@@ -17,7 +17,6 @@ class _WebChromeAddressesScreenState extends State<WebChromeAddressesScreen> {
     return Scaffold(
       appBar: AppBar(title: Text('Addresses and more')),
       body: SettingsList(
-        platform: DevicePlatform.web,
         sections: [
           SettingsSection(
             margin: EdgeInsetsDirectional.only(top: 40),

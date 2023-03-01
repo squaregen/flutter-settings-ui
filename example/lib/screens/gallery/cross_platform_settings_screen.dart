@@ -36,7 +36,6 @@ class _CrossPlatformSettingsScreenState
         title: Text('Settings'),
       ),
       body: SettingsList(
-        platform: selectedPlatform,
         lightTheme: !useCustomTheme
             ? null
             : SettingsThemeData(
@@ -194,7 +193,6 @@ class PlatformPickerScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Platforms')),
       body: SettingsList(
-        platform: platform,
         sections: [
           SettingsSection(
             title: Text('Select the platform you want'),

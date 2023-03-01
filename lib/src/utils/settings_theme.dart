@@ -3,11 +3,9 @@ import 'package:settings_ui/src/utils/platform_utils.dart';
 
 class SettingsTheme extends InheritedWidget {
   final SettingsThemeData themeData;
-  final DevicePlatform platform;
 
   SettingsTheme({
     required this.themeData,
-    required this.platform,
     required Widget child,
   }) : super(child: child);
 
