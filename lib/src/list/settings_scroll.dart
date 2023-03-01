@@ -48,7 +48,7 @@ class SettingsScroll extends StatelessWidget {
       platform = this.platform!;
     }
 
-    final brightness = calculateBrightness(context);
+    final brightness = Theme.of(context).brightness;
 
     final themeData = ThemeProvider.getTheme(
       context: context,
@@ -129,20 +129,4 @@ class SettingsScroll extends StatelessWidget {
     }
   }
 
-  Brightness calculateBrightness(BuildContext context) {
-    final materialBrightness = Theme.of(context).brightness;
-    final cupertinoBrightness = CupertinoTheme.of(context).brightness ??
-        MediaQuery.of(context).platformBrightness;
-
-    switch (applicationType) {
-      case ApplicationType.material:
-        return materialBrightness;
-      case ApplicationType.cupertino:
-        return cupertinoBrightness;
-      case ApplicationType.both:
-        return platform != DevicePlatform.iOS
-            ? materialBrightness
-            : cupertinoBrightness;
-    }
-  }
 }
