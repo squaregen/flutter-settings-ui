@@ -11,7 +11,6 @@ class WebChromeSettings extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('Settings')),
       body: SettingsScroll(
-        platform: DevicePlatform.web,
         sections: [
           SettingsScrollSection(
             title: Text('Auto-fill'),

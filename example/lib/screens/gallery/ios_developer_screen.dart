@@ -20,7 +20,6 @@ class _IosDeveloperScreen extends State<IosDeveloperScreen> {
         bottom: false,
         child: SettingsScroll(
           applicationType: ApplicationType.cupertino,
-          platform: DevicePlatform.iOS,
           sections: [
             SettingsScrollSection(
               title: Text('APPEARANCE'),
