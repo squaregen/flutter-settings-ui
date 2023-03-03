@@ -32,6 +32,7 @@ class SettingsThemeData {
     this.settingsTileTextColor,
     this.inactiveTitleColor,
     this.inactiveSubtitleColor,
+    this.sectionTitleTextStyle,
   });
 
   final Color? settingsListBackground;
@@ -45,6 +46,7 @@ class SettingsThemeData {
   final Color? settingsTileTextColor;
   final Color? inactiveTitleColor;
   final Color? inactiveSubtitleColor;
+  final TextStyle? sectionTitleTextStyle;
 
   SettingsThemeData merge({
     SettingsThemeData? theme,
@@ -63,6 +65,7 @@ class SettingsThemeData {
       titleTextColor: theme.titleTextColor,
       inactiveTitleColor: theme.inactiveTitleColor,
       inactiveSubtitleColor: theme.inactiveSubtitleColor,
+      sectionTitleTextStyle: theme.sectionTitleTextStyle,
     );
   }
 
@@ -78,6 +81,7 @@ class SettingsThemeData {
     Color? settingsTileTextColor,
     Color? inactiveTitleColor,
     Color? inactiveSubtitleColor,
+    TextStyle? sectionTitleTextStyle,
   }) {
     return SettingsThemeData(
       settingsListBackground:
@@ -96,6 +100,8 @@ class SettingsThemeData {
           inactiveSubtitleColor ?? this.inactiveSubtitleColor,
       settingsTileTextColor:
           settingsTileTextColor ?? this.settingsTileTextColor,
+      sectionTitleTextStyle:
+      sectionTitleTextStyle ?? this.sectionTitleTextStyle,
     );
   }
 }
