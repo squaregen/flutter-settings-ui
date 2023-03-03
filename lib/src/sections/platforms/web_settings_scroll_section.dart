@@ -40,7 +40,7 @@ class WebSettingsScrollSection extends StatelessWidget {
                 top: 40 * scaleFactor,
               ),
               child: DefaultTextStyle(
-                style: TextStyle(
+                style: theme.themeData.sectionTitleTextStyle ?? TextStyle(
                   color: theme.themeData.titleTextColor,
                   fontSize: 15,
                 ),
