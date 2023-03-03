@@ -33,12 +33,6 @@ class WebSettingsScrollSection extends StatelessWidget {
         children: [
           if (title != null)
             Container(
-              height: 65 * scaleFactor,
-              padding: EdgeInsetsDirectional.only(
-                bottom: 5 * scaleFactor,
-                start: 6,
-                top: 40 * scaleFactor,
-              ),
               child: DefaultTextStyle(
                 style: theme.themeData.sectionTitleTextStyle ?? TextStyle(
                   color: theme.themeData.titleTextColor,
