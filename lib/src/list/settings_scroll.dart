@@ -54,31 +54,28 @@ class SettingsScroll extends StatelessWidget {
         child: SettingsTheme(
             themeData: themeData,
             child:
-            Container(color: Colors.blue,
-                child:
-                Column(
-                    children:
-                    [
-                      Expanded(child:
-                      SingleChildScrollView(
-                          controller: controller,
-                          physics: physics,
-                          padding: contentPadding ?? calculateDefaultPadding(context),
+            Column(
+                children:
+                [
+                  Expanded(child:
+                  SingleChildScrollView(
+                      controller: controller,
+                      physics: physics,
+                      padding: contentPadding ?? calculateDefaultPadding(context),
 
-                          child:
+                      child:
 
-                          Column(
+                      Column(
 
-                            children: List.generate(sections.length, (index) {
-                              if (automaticKeepAlive ?? false) {
-                                return AutomaticKeepAliveProxy(child: sections[index]);
-                              }
-                              return sections[index];
-                            }
-                            ),
-                          ))),
-                    ])
-            )
+                        children: List.generate(sections.length, (index) {
+                          if (automaticKeepAlive ?? false) {
+                            return AutomaticKeepAliveProxy(child: sections[index]);
+                          }
+                          return sections[index];
+                        }
+                        ),
+                      ))),
+                ])
 
         ),
       ),
