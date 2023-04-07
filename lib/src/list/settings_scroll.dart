@@ -50,7 +50,7 @@ class SettingsScroll extends StatelessWidget {
 
     return Container(
       color: themeData.settingsListBackground,
-      width: width ?? MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width,
       alignment: alignment ?? Alignment.topCenter,
       child: ConstrainedBox(
         constraints: BoxConstraints(),
@@ -68,14 +68,17 @@ class SettingsScroll extends StatelessWidget {
 
                       child:
 
-                      Column(
+                      SizedBox(
+                        width: width,
+                        child: Column(
 
-                        children: List.generate(sections.length, (index) {
-                          if (automaticKeepAlive ?? false) {
-                            return AutomaticKeepAliveProxy(child: sections[index]);
+                          children: List.generate(sections.length, (index) {
+                            if (automaticKeepAlive ?? false) {
+                              return AutomaticKeepAliveProxy(child: sections[index]);
+                            }
+                            return sections[index];
                           }
-                          return sections[index];
-                        }
+                          ),
                         ),
                       ))),
                 ])
