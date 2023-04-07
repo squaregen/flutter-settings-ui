@@ -60,26 +60,28 @@ class SettingsScroll extends StatelessWidget {
             Column(
                 children:
                 [
-                  SizedBox(
-                      width: width,
-                      child:
-                  SingleChildScrollView(
-                      controller: controller,
-                      physics: physics,
-                      padding: contentPadding ?? calculateDefaultPadding(context),
+                  Expanded(
+                    child: SizedBox(
+                        width: width,
+                        child:
+                    SingleChildScrollView(
+                        controller: controller,
+                        physics: physics,
+                        padding: contentPadding ?? calculateDefaultPadding(context),
 
-                      child:
+                        child:
 
-                      Column(
+                        Column(
 
-                        children: List.generate(sections.length, (index) {
-                          if (automaticKeepAlive ?? false) {
-                            return AutomaticKeepAliveProxy(child: sections[index]);
+                          children: List.generate(sections.length, (index) {
+                            if (automaticKeepAlive ?? false) {
+                              return AutomaticKeepAliveProxy(child: sections[index]);
+                            }
+                            return sections[index];
                           }
-                          return sections[index];
-                        }
-                        ),
-                      ))),
+                          ),
+                        ))),
+                  ),
                 ])
 
         ),
