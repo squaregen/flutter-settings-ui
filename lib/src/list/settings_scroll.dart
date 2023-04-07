@@ -48,6 +48,7 @@ class SettingsScroll extends StatelessWidget {
       brightness: brightness,
     ).merge(theme: brightness == Brightness.dark ? darkTheme : lightTheme);
 
+
     return Container(
       color: themeData.settingsListBackground,
       width: MediaQuery.of(context).size.width,
@@ -68,27 +69,23 @@ class SettingsScroll extends StatelessWidget {
                       padding: contentPadding ?? calculateDefaultPadding(context),
 
                       child:
-
-                      UnconstrainedBox(
-                        child: SizedBox(
-                        width: width,
-                        child: Column(
-
-                          children: List.generate(sections.length, (index) {
-                            if (automaticKeepAlive ?? false) {
-                              return AutomaticKeepAliveProxy(child: sections[index]);
-                            }
-                            return sections[index];
-                          }
-                          ),
-                        ),
-                      )))),
+                      width!= null ?
+                      _withWidth(child: _columnWithSections()) :
+                      _columnWithSections(),
+                      )),
                 ])
 
         ),
       ),
     );
   }
+
+  Widget _withWidth({required Widget child})
+  =>  UnconstrainedBox(
+        child: SizedBox(
+            width: width,
+            child: child;
+        ));
 
   EdgeInsets calculateDefaultPadding(
       BuildContext context) {
@@ -100,7 +97,18 @@ class SettingsScroll extends StatelessWidget {
 
 
   }
+Widget _columnWithSections(){
+    return Column(
 
+      children: List.generate(sections.length, (index) {
+        if (automaticKeepAlive ?? false) {
+          return AutomaticKeepAliveProxy(child: sections[index]);
+        }
+        return sections[index];
+      }
+      ),
+    );
+}
 }
 /*class SettingsScroll extends StatelessWidget {
   const SettingsScroll({
