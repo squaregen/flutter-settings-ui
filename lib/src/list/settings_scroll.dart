@@ -60,7 +60,9 @@ class SettingsScroll extends StatelessWidget {
             Column(
                 children:
                 [
-                  Expanded(child:
+                  SizedBox(
+                      width: width,
+                      child:
                   SingleChildScrollView(
                       controller: controller,
                       physics: physics,
@@ -68,17 +70,14 @@ class SettingsScroll extends StatelessWidget {
 
                       child:
 
-                      SizedBox(
-                        width: width,
-                        child: Column(
+                      Column(
 
-                          children: List.generate(sections.length, (index) {
-                            if (automaticKeepAlive ?? false) {
-                              return AutomaticKeepAliveProxy(child: sections[index]);
-                            }
-                            return sections[index];
+                        children: List.generate(sections.length, (index) {
+                          if (automaticKeepAlive ?? false) {
+                            return AutomaticKeepAliveProxy(child: sections[index]);
                           }
-                          ),
+                          return sections[index];
+                        }
                         ),
                       ))),
                 ])
