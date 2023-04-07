@@ -84,7 +84,7 @@ class SettingsScroll extends StatelessWidget {
   =>  UnconstrainedBox(
         child: SizedBox(
             width: width,
-            child: child;
+            child: child
         ));
 
   EdgeInsets calculateDefaultPadding(
