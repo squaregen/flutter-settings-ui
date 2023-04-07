@@ -69,8 +69,8 @@ class SettingsScroll extends StatelessWidget {
 
                       child:
 
-                      SizedBox(
-                        width: width,
+                      ConstrainedBox(
+                        constraints: width!=null ? BoxConstraints(maxWidth: width!) : BoxConstraints(),
                         child: Column(
 
                           children: List.generate(sections.length, (index) {
