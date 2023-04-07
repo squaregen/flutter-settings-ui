@@ -20,6 +20,7 @@ class SettingsScroll extends StatelessWidget {
     this.controller,
     this.automaticKeepAlive,
     this.alignment,
+    this.width,
     Key? key,
   }) : super(key: key);
 
@@ -35,6 +36,8 @@ class SettingsScroll extends StatelessWidget {
   final ScrollController? controller;
   final bool? automaticKeepAlive;
   final Alignment? alignment;
+  ///dimensione orizzontale, lasciare null usare tutto lo spazio disponibile.
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,7 @@ class SettingsScroll extends StatelessWidget {
 
     return Container(
       color: themeData.settingsListBackground,
-      width: MediaQuery.of(context).size.width,
+      width: width ?? MediaQuery.of(context).size.width,
       alignment: alignment ?? Alignment.topCenter,
       child: ConstrainedBox(
         constraints: BoxConstraints(),
