@@ -58,20 +58,20 @@ class SettingsScroll extends StatelessWidget {
             themeData: themeData,
             child:
             Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
                 children:
                 [
-                  Expanded(
-                    child: SizedBox(
+                  Expanded(child:
+                  SingleChildScrollView(
+                      controller: controller,
+                      physics: physics,
+                      padding: contentPadding ?? calculateDefaultPadding(context),
+
+                      child:
+
+                      SizedBox(
                         width: width,
-                        child:
-                    SingleChildScrollView(
-                        controller: controller,
-                        physics: physics,
-                        padding: contentPadding ?? calculateDefaultPadding(context),
-
-                        child:
-
-                        Column(
+                        child: Column(
 
                           children: List.generate(sections.length, (index) {
                             if (automaticKeepAlive ?? false) {
@@ -80,8 +80,8 @@ class SettingsScroll extends StatelessWidget {
                             return sections[index];
                           }
                           ),
-                        ))),
-                  ),
+                        ),
+                      ))),
                 ])
 
         ),
