@@ -70,7 +70,7 @@ class SettingsScroll extends StatelessWidget {
 
                       child:
                       width!= null ?
-                      _withWidth(child: _columnWithSections()) :
+                      _withWidth(context, child: _columnWithSections()) :
                       _columnWithSections(),
                       )),
                 ])
@@ -80,10 +80,10 @@ class SettingsScroll extends StatelessWidget {
     );
   }
 
-  Widget _withWidth({required Widget child})
+  Widget _withWidth(BuildContext context, {required Widget child})
   =>  UnconstrainedBox(
         child: SizedBox(
-            width: width,
+            width: width!=null ? (MediaQuery.of(context).size.width > width! ? width : MediaQuery.of(context).size.width) : null,
             child: child
         ));
 
