@@ -81,15 +81,15 @@ class SettingsScroll extends StatelessWidget {
   }
 
   Widget _withWidth(BuildContext context, {required Widget child})
-  =>  UnconstrainedBox(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SizedBox(
+  =>  LayoutBuilder(
+    builder: (context, constraints) {
+      return UnconstrainedBox(
+            child: SizedBox(
                 width: width!=null ? (constraints.maxWidth > (width! + 16) ? width : constraints.maxWidth) : null,
                 child: child
-            );
-          }
-        ));
+            ));
+    }
+  );
 
   EdgeInsets calculateDefaultPadding(
       BuildContext context) {
