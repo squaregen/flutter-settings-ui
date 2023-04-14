@@ -83,7 +83,7 @@ class SettingsScroll extends StatelessWidget {
   Widget _withWidth(BuildContext context, {required Widget child})
   =>  UnconstrainedBox(
         child: SizedBox(
-            width: width!=null ? (MediaQuery.of(context).size.width > width! ? width : MediaQuery.of(context).size.width) : null,
+            width: width!=null ? (MediaQuery.of(context).size.width > (width! + 16) ? width : MediaQuery.of(context).size.width-16) : null,
             child: child
         ));
 
