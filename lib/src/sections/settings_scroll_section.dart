@@ -11,6 +11,7 @@ class SettingsScrollSection extends AbstractSettingsSection {
     this.margin,
     this.title,
     this.color,
+    this.elevation = 4,
     Key? key,
   }) : super(key: key);
 
@@ -18,6 +19,7 @@ class SettingsScrollSection extends AbstractSettingsSection {
   final EdgeInsetsDirectional? margin;
   final Widget? title;
   final Color? color;
+  final double elevation;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class SettingsScrollSection extends AbstractSettingsSection {
       tiles: tiles,
       margin: margin,
       color: color,
+      elevation: elevation,
     );
   }
 }
