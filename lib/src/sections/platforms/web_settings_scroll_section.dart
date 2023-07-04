@@ -10,6 +10,7 @@ class WebSettingsScrollSection extends StatelessWidget {
     required this.title,
     this.elevation = 4,
     this.color,
+    this.icon,
     Key? key,
   }) : super(key: key);
 
@@ -18,6 +19,7 @@ class WebSettingsScrollSection extends StatelessWidget {
   final Widget? title;
   final Color? color;
   final double elevation;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +37,15 @@ class WebSettingsScrollSection extends StatelessWidget {
         children: [
           if (title != null)
             Container(
-              child: DefaultTextStyle(
-                style: theme.themeData.sectionTitleTextStyle ?? TextStyle(
-                  color: theme.themeData.titleTextColor,
-                  fontSize: 15,
+              child: ListTile(
+                leading: icon,
+                title: DefaultTextStyle(
+                  style: theme.themeData.sectionTitleTextStyle ?? TextStyle(
+                    color: theme.themeData.titleTextColor,
+                    fontSize: 15,
+                  ),
+                  child: title!,
                 ),
-                child: title!,
               ),
             ),
           Card(
