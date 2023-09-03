@@ -33,6 +33,8 @@ class SettingsThemeData {
     this.inactiveTitleColor,
     this.inactiveSubtitleColor,
     this.sectionTitleTextStyle,
+    this.settingListGradientBackground,
+    this.settingSectionGradientBackground,
   });
 
   final Color? settingsListBackground;
@@ -46,6 +48,9 @@ class SettingsThemeData {
   final Color? settingsTileTextColor;
   final Color? inactiveTitleColor;
   final Color? inactiveSubtitleColor;
+
+  final LinearGradient? settingListGradientBackground;
+  final LinearGradient? settingSectionGradientBackground;
   final TextStyle? sectionTitleTextStyle;
 
   SettingsThemeData merge({
@@ -66,6 +71,8 @@ class SettingsThemeData {
       inactiveTitleColor: theme.inactiveTitleColor,
       inactiveSubtitleColor: theme.inactiveSubtitleColor,
       sectionTitleTextStyle: theme.sectionTitleTextStyle,
+      settingSectionGradientBackground: theme.settingSectionGradientBackground,
+      settingListGradientBackground: theme.settingListGradientBackground,
     );
   }
 
@@ -82,6 +89,9 @@ class SettingsThemeData {
     Color? inactiveTitleColor,
     Color? inactiveSubtitleColor,
     TextStyle? sectionTitleTextStyle,
+    LinearGradient? settingListGradientBackground,
+    LinearGradient? settingSectionGradientBackground,
+
   }) {
     return SettingsThemeData(
       settingsListBackground:
@@ -102,6 +112,8 @@ class SettingsThemeData {
           settingsTileTextColor ?? this.settingsTileTextColor,
       sectionTitleTextStyle:
       sectionTitleTextStyle ?? this.sectionTitleTextStyle,
+      settingListGradientBackground: settingListGradientBackground ?? this.settingListGradientBackground,
+        settingSectionGradientBackground: settingSectionGradientBackground ?? this.settingSectionGradientBackground
     );
   }
 }

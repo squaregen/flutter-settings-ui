@@ -39,12 +39,16 @@ class WebSettingsSection extends StatelessWidget {
                 child: title!,
               ),
             ),
-          Card(
-            clipBehavior: Clip.antiAlias,
-            elevation: 4,
-            color: theme.themeData.settingsSectionBackground,
-            child: buildTileList(),
+          Container(
+            decoration:
+            BoxDecoration(gradient: theme.themeData.settingSectionGradientBackground),
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              elevation: 4,
+              color: theme.themeData.settingSectionGradientBackground == null ? theme.themeData.settingsSectionBackground : null,
+              child: buildTileList(),
 
+            ),
           ),
         ],
       ),

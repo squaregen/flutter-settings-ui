@@ -48,13 +48,17 @@ class WebSettingsScrollSection extends StatelessWidget {
                 ),
               ),
             ),
+          Container(decoration:
+          BoxDecoration(gradient: theme.themeData.settingSectionGradientBackground),
+          child:
           Card(
             clipBehavior: Clip.antiAlias,
             elevation: elevation,
-            color: color ?? theme.themeData.settingsSectionBackground,
+
+            color:  theme.themeData.settingSectionGradientBackground == null ? color ?? theme.themeData.settingsSectionBackground : null,
             child: buildTileList(),
 
-          ),
+          )),
         ],
       ),
     );

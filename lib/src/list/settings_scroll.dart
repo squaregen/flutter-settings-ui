@@ -50,7 +50,9 @@ class SettingsScroll extends StatelessWidget {
 
 
     return Container(
-      color: themeData.settingsListBackground,
+      decoration:
+      BoxDecoration(gradient: themeData.settingListGradientBackground),
+
       width: MediaQuery.of(context).size.width,
       alignment: alignment ?? Alignment.topCenter,
       child: ConstrainedBox(
