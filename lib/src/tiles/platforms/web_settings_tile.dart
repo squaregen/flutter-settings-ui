@@ -18,6 +18,7 @@ class WebSettingsTile extends StatelessWidget {
     this.onDoublePressed,
     this.onLongPress,
     this.color,
+    this.duration =1000,
     Key? key,
   }) : super(key: key);
 
@@ -35,7 +36,7 @@ class WebSettingsTile extends StatelessWidget {
   final Widget? trailing;
   final Color? activeSwitchColor;
   final Color? color;
-
+final int duration;
 
 
   @override
@@ -59,7 +60,7 @@ class WebSettingsTile extends StatelessWidget {
       child: Material(
         color: color ?? Colors.transparent,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 1000),
+          duration: Duration(milliseconds: duration),
           color: color,
           child: InkWell(
             onTap: cantShowAnimation

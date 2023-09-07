@@ -55,7 +55,7 @@ class WebSettingsScrollSection extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             elevation: elevation,
 
-            color:  theme.themeData.settingListGradientBackground == null ? color ?? theme.themeData.settingsSectionBackground : null,
+            color:  theme.themeData.settingSectionGradientBackground == null ? color ?? theme.themeData.settingsSectionBackground : null,
             child: buildTileList(),
 
           )),
