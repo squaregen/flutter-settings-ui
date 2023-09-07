@@ -17,6 +17,7 @@ class SettingsTile extends AbstractSettingsTile {
     this.color,
     this.onLongPress,
     this.onDoublePressed,
+    this.duration = 1000,
     Key? key,
   }) : super(key: key) {
     onToggle = null;
@@ -36,6 +37,7 @@ class SettingsTile extends AbstractSettingsTile {
     this.color,
     this.onLongPress,
     this.onDoublePressed,
+    this.duration = 1000,
     Key? key,
   }) : super(key: key) {
     onToggle = null;
@@ -57,6 +59,7 @@ class SettingsTile extends AbstractSettingsTile {
     this.color,
     this.onLongPress,
     this.onDoublePressed,
+    this.duration = 1000,
     Key? key,
   }) : super(key: key) {
     value = null;
@@ -87,6 +90,7 @@ class SettingsTile extends AbstractSettingsTile {
   late final Color? color;
   final Function(BuildContext context)? onDoublePressed;
   final Function(BuildContext context)? onLongPress;
+  final int duration;
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +109,7 @@ class SettingsTile extends AbstractSettingsTile {
       activeSwitchColor: activeSwitchColor,
       initialValue: initialValue ?? false,
       color: color,
+      duration: duration,
     );
   }
 }
