@@ -75,6 +75,13 @@ class _CrossPlatformSettingsScreenState
                 leading: Icon(Icons.cloud_outlined),
                 title: Text('Environment'),
                 value: Text('Production'),
+
+              ),
+              SettingsTile.navigation(
+                leading: Icon(Icons.cloud_outlined),
+                title: Text('Environment'),
+                value: TextField(),
+enabled: false,
               ),
               SettingsTile.navigation(
                 leading: Icon(Icons.devices_other),

@@ -57,9 +57,7 @@ final int duration;
 
     return IgnorePointer(
       ignoring: !enabled,
-      child: Focus(
-        canRequestFocus: enabled,
-        child: Material(
+      child: Material(
         color: color ?? Colors.transparent,
         child: AnimatedContainer(
           duration: Duration(milliseconds: duration),
@@ -81,7 +79,10 @@ final int duration;
               onLongPress?.call(context);
             } : null,
             highlightColor: theme.themeData.tileHighlightColor,
-            child: Container(
+            child:
+            ExcludeFocusTraversal(
+              excluding: !enabled,
+              child: Container(
               child: Row(
                 children: [
                   if (leading != null)
@@ -188,7 +189,7 @@ final int duration;
               ),
             ),
           ),
-        ),
+          ),
         ),
       ),
     );
