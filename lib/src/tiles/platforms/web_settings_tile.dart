@@ -57,7 +57,9 @@ final int duration;
 
     return IgnorePointer(
       ignoring: !enabled,
-      child: Material(
+      child: Focus(
+        canRequestFocus: enabled,
+        child: Material(
         color: color ?? Colors.transparent,
         child: AnimatedContainer(
           duration: Duration(milliseconds: duration),
@@ -186,6 +188,7 @@ final int duration;
               ),
             ),
           ),
+        ),
         ),
       ),
     );
