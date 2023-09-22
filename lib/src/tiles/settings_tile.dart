@@ -35,6 +35,7 @@ class SettingsTile extends AbstractSettingsTile {
     this.onPressed,
     this.enabled = true,
     this.color,
+    this.borderColor,
     this.onLongPress,
     this.onDoublePressed,
     this.duration = 1000,
