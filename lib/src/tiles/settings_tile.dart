@@ -88,6 +88,7 @@ class SettingsTile extends AbstractSettingsTile {
   late final bool? initialValue;
   late final bool enabled;
   late final Color? color;
+  late final Color? borderColor;
   final Function(BuildContext context)? onDoublePressed;
   final Function(BuildContext context)? onLongPress;
   final int duration;
@@ -109,6 +110,7 @@ class SettingsTile extends AbstractSettingsTile {
       activeSwitchColor: activeSwitchColor,
       initialValue: initialValue ?? false,
       color: color,
+      borderColor: borderColor,
       duration: duration,
     );
   }
