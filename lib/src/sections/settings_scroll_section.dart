@@ -13,6 +13,10 @@ class SettingsScrollSection extends AbstractSettingsSection {
     this.color,
     this.icon,
     this.elevation = 4,
+    this.marginCard,
+    this.surfaceTintColor,
+    this.shadowColor,
+    this.shape,
     Key? key,
   }) : super(key: key);
 
@@ -22,6 +26,11 @@ class SettingsScrollSection extends AbstractSettingsSection {
   final Color? color;
   final double elevation;
   final Widget? icon;
+  final EdgeInsetsGeometry? marginCard;
+  final Color? surfaceTintColor;
+  final Color? shadowColor;
+  final ShapeBorder? shape;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +41,12 @@ class SettingsScrollSection extends AbstractSettingsSection {
       color: color,
       elevation: elevation,
       icon: icon,
+      marginCard: marginCard,
+      surfaceTintColor: surfaceTintColor,
+      shadowColor: shadowColor,
+      shape: shape,
+
+
     );
   }
 }
