@@ -11,6 +11,10 @@ class WebSettingsScrollSection extends StatelessWidget {
     this.elevation = 4,
     this.color,
     this.icon,
+    this.shape,
+    this.marginCard,
+    this.shadowColor,
+    this.surfaceTintColor,
     Key? key,
   }) : super(key: key);
 
@@ -20,6 +24,12 @@ class WebSettingsScrollSection extends StatelessWidget {
   final Color? color;
   final double elevation;
   final Widget? icon;
+  final ShapeBorder? shape;
+  final EdgeInsetsGeometry? marginCard;
+  final bool borderOnForeground = true;
+  final Color? shadowColor;
+  final Color? surfaceTintColor;
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +64,11 @@ class WebSettingsScrollSection extends StatelessWidget {
           Card(
             clipBehavior: Clip.antiAlias,
             elevation: elevation,
-
+            shadowColor: shadowColor,
+            shape: shape,
+            borderOnForeground: borderOnForeground,
+            surfaceTintColor: surfaceTintColor,
+            margin: marginCard,
             color:  theme.themeData.settingSectionGradientBackground == null ? color ?? theme.themeData.settingsSectionBackground : null,
             child: buildTileList(),
 
