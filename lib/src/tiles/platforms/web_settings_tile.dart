@@ -18,7 +18,7 @@ class WebSettingsTile extends StatelessWidget {
     this.onDoublePressed,
     this.onLongPress,
     this.color,
-    this.duration =1000,
+    this.duration = 1000,
     this.borderColor,
     Key? key,
   }) : super(key: key);
@@ -38,19 +38,24 @@ class WebSettingsTile extends StatelessWidget {
   final Color? activeSwitchColor;
   final Color? color;
   final Color? borderColor;
-final int duration;
-
+  final int duration;
 
   @override
   Widget build(BuildContext context) {
-    double leftPadding=24;
-    double rightPadding=24;
+    // M3 Expressive preferisce padding generosi
+    double leftPadding = 16;
+    double rightPadding = 16;
 
-    final theme = SettingsTheme.of(context);
-    final scaleFactor = MediaQuery.of(context).textScaleFactor;
-    if (MediaQuery.of(context).size.width < 600){
-        leftPadding = 8;
-        rightPadding = 8;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+
+    // Gestione compatibilità textScaleFactor/textScaler
+    final double scaleFactor = MediaQuery.textScalerOf(context).scale(1);
+
+    if (MediaQuery.of(context).size.width < 600) {
+      leftPadding = 16;
+      rightPadding = 16;
     }
 
     final cantShowAnimation = tileType == SettingsTileType.switchTile
@@ -61,145 +66,161 @@ final int duration;
       ignoring: !enabled,
       child: AnimatedContainer(
         duration: Duration(milliseconds: duration),
-        color: borderColor,
-        child: Padding(
-          padding: EdgeInsets.all(borderColor!=null ? 8.0 : 0.0),
-          child: Material(
-            color: color ?? Colors.transparent,
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: duration),
-              color: color,
-              child: InkWell(
-                onTap: cantShowAnimation
-                    ? null
-                    : () {
-                        if (tileType == SettingsTileType.switchTile) {
-                          onToggle?.call(!initialValue);
-                        } else {
-                          onPressed?.call(context);
-                        }
-                      },
-                onDoubleTap: onDoublePressed!=null ? (){
-                  onDoublePressed?.call(context);
-                  } : null,
-                onLongPress: onLongPress!=null ? (){
-                  onLongPress?.call(context);
-                } : null,
-                highlightColor: theme.themeData.tileHighlightColor,
-                child:
-                ExcludeFocusTraversal(
-                  excluding: !enabled,
-                  child: Container(
-                  child: Row(
-                    children: [
-                      if (leading != null)
-                        Padding(
-                          padding: EdgeInsetsDirectional.only(
-                            start: leftPadding,
+        decoration: BoxDecoration(
+          color: color,
+          border: borderColor != null
+              ? Border.all(color: borderColor!, width: 2)
+              : null,
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: cantShowAnimation
+                ? null
+                : () {
+              if (tileType == SettingsTileType.switchTile) {
+                onToggle?.call(!initialValue);
+              } else {
+                onPressed?.call(context);
+              }
+            },
+            onDoubleTap: onDoublePressed != null
+                ? () {
+              onDoublePressed?.call(context);
+            }
+                : null,
+            onLongPress: onLongPress != null
+                ? () {
+              onLongPress?.call(context);
+            }
+                : null,
+            splashColor: colorScheme.primary.withOpacity(0.1),
+            highlightColor: colorScheme.primary.withOpacity(0.05),
+            child: ExcludeFocusTraversal(
+              excluding: !enabled,
+              child: Padding(
+                padding: EdgeInsetsDirectional.only(
+                  start: leftPadding,
+                  end: rightPadding,
+                  top: 16 * scaleFactor, // Padding verticale aumentato per M3
+                  bottom: 16 * scaleFactor,
+                ),
+                child: Row(
+                  children: [
+                    if (leading != null)
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(end: 16),
+                        child: IconTheme(
+                          data: IconTheme.of(context).copyWith(
+                            color: enabled
+                                ? colorScheme.onSurfaceVariant
+                                : colorScheme.onSurface.withOpacity(0.38),
+                            size: 24,
                           ),
-                          child: IconTheme(
-                            data: IconTheme.of(context).copyWith(
-                              color: theme.themeData.leadingIconsColor,
-                            ),
-                            child: leading!,
-                          ),
-                        ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.only(
-                            start: leftPadding,
-                            end: rightPadding,
-                            bottom: 19 * scaleFactor,
-                            top: 19 * scaleFactor,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (title!=null)
-                              DefaultTextStyle(
-                                style: TextStyle(
-                                  color: theme.themeData.settingsTileTextColor,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                child: title ?? Container(),
-                              ),
-                              if (value != null)
-                                Padding(
-                                  padding: EdgeInsets.only(top: 4.0),
-                                  child: DefaultTextStyle(
-                                    style: TextStyle(
-                                      color: theme.themeData.tileDescriptionTextColor,
-                                    ),
-                                    child: value!,
-                                  ),
-                                )
-                              else if (description != null)
-                                Padding(
-                                  padding: EdgeInsets.only(top: 4.0),
-                                  child: DefaultTextStyle(
-                                    style: TextStyle(
-                                      color: theme.themeData.tileDescriptionTextColor,
-                                    ),
-                                    child: description!,
-                                  ),
-                                ),
-                            ],
-                          ),
+                          child: leading!,
                         ),
                       ),
-                      // if (tileType == SettingsTileType.navigationTile)
-                      //   Padding(
-                      //     padding:
-                      //         const EdgeInsetsDirectional.only(start: 6, end: 15),
-                      //     child: IconTheme(
-                      //       data: IconTheme.of(context)
-                      //           .copyWith(color: theme.themeData.leadingIconsColor),
-                      //       child: Icon(
-                      //         CupertinoIcons.chevron_forward,
-                      //         size: 18 * scaleFactor,
-                      //       ),
-                      //     ),
-                      //   ),
-                      if (trailing != null && tileType == SettingsTileType.switchTile)
-                        Row(
-                          children: [
-                            trailing!,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (title != null)
+                            DefaultTextStyle(
+                              style: textTheme.bodyLarge!.copyWith(
+                                color: enabled
+                                    ? colorScheme.onSurface
+                                    : colorScheme.onSurface.withOpacity(0.38),
+                                fontWeight: FontWeight.w400,
+                              ),
+                              child: title!,
+                            ),
+                          if (value != null)
                             Padding(
-                              padding: const EdgeInsetsDirectional.only(end: 8),
-                              child: Switch(
-                                activeColor: activeSwitchColor ??
-                                    Color.fromRGBO(138, 180, 248, 1.0),
-                                value: initialValue,
-                                onChanged: onToggle,
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: DefaultTextStyle(
+                                style: textTheme.bodyMedium!.copyWith(
+                                  color: enabled
+                                      ? colorScheme.primary
+                                      : colorScheme.onSurface.withOpacity(0.38),
+                                ),
+                                child: value!,
+                              ),
+                            )
+                          else if (description != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: DefaultTextStyle(
+                                style: textTheme.bodyMedium!.copyWith(
+                                  color: enabled
+                                      ? colorScheme.onSurfaceVariant
+                                      : colorScheme.onSurface.withOpacity(0.38),
+                                ),
+                                child: description!,
                               ),
                             ),
-                          ],
-                        )
-                      else if (tileType == SettingsTileType.switchTile)
+                        ],
+                      ),
+                    ),
+                    if (trailing != null &&
+                        tileType == SettingsTileType.switchTile)
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          DefaultTextStyle(
+                              style: textTheme.labelLarge!.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                              child: trailing!),
+                          const SizedBox(width: 12),
+                          _buildM3Switch(initialValue, onToggle,
+                              activeSwitchColor, colorScheme),
+                        ],
+                      )
+                    else if (tileType == SettingsTileType.switchTile)
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 8),
+                        child: _buildM3Switch(initialValue, onToggle,
+                            activeSwitchColor, colorScheme),
+                      )
+                    else if (trailing != null)
                         Padding(
-                          padding:
-                              const EdgeInsetsDirectional.only(start: 16, end: 8),
-                          child: Switch(
-                            value: initialValue,
-                            activeColor: activeSwitchColor ??
-                                Color.fromRGBO(138, 180, 248, 1.0),
-                            onChanged: onToggle,
+                          padding: const EdgeInsetsDirectional.only(start: 16),
+                          child: IconTheme(
+                            data: IconThemeData(
+                              color: colorScheme.onSurfaceVariant,
+                              size: 20,
+                            ),
+                            child: DefaultTextStyle(
+                              style: textTheme.bodyMedium!.copyWith(
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                              child: trailing!,
+                            ),
                           ),
-                        )
-                      else if (trailing != null)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: trailing!,
                         ),
-                    ],
-                  ),
+                  ],
                 ),
-              ),
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildM3Switch(bool value, Function(bool)? onChanged, Color? activeColor,
+      ColorScheme colorScheme) {
+    // M3 Switch nativo
+    return Switch(
+      value: value,
+      onChanged: onChanged,
+      activeColor: activeSwitchColor ?? colorScheme.primaryContainer,
+      activeTrackColor: activeSwitchColor ?? colorScheme.primary,
+      inactiveThumbColor: colorScheme.outline,
+      inactiveTrackColor: colorScheme.surfaceContainerHighest,
+      trackOutlineColor: MaterialStateProperty.resolveWith(
+            (states) => Colors.transparent, // M3 switches usually have no outline border
       ),
     );
   }
