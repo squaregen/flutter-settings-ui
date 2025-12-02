@@ -6,6 +6,7 @@ import 'package:settings_ui/src/utils/automatic_keep_alive_setting_section.dart'
 import 'package:settings_ui/src/utils/platform_utils.dart';
 import 'package:settings_ui/src/utils/settings_theme.dart';
 import 'package:settings_ui/src/utils/theme_provider.dart';
+
 class SettingsScroll extends StatelessWidget {
   const SettingsScroll({
     required this.sections,
@@ -36,165 +37,84 @@ class SettingsScroll extends StatelessWidget {
   final ScrollController? controller;
   final bool? automaticKeepAlive;
   final Alignment? alignment;
+
   ///dimensione orizzontale, lasciare null usare tutto lo spazio disponibile.
   final double? width;
 
   @override
   Widget build(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
+    final theme = Theme.of(context);
+    final brightness = theme.brightness;
+    final colorScheme = theme.colorScheme;
 
+    // Recuperiamo il tema legacy se serve, ma useremo principalmente M3 nativo
     final themeData = ThemeProvider.getTheme(
       context: context,
       brightness: brightness,
     ).merge(theme: brightness == Brightness.dark ? darkTheme : lightTheme);
 
-
     return Container(
-      decoration:
-      BoxDecoration(gradient: themeData.settingListGradientBackground),
-
+      // M3: Sfondo neutro (Surface) per far risaltare le card delle sezioni
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+      ),
       width: MediaQuery.of(context).size.width,
       alignment: alignment ?? Alignment.topCenter,
       child: ConstrainedBox(
-        constraints: BoxConstraints(),
+        constraints: const BoxConstraints(),
         child: SettingsTheme(
-            themeData: themeData,
-            child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-                children:
-                [
-                  Expanded(child:
-                  SingleChildScrollView(
-                      controller: controller,
-                      physics: physics,
-                      padding: contentPadding ?? calculateDefaultPadding(context),
-
-                      child:
-                      width!= null ?
-                      _withWidth(context, child: _columnWithSections()) :
-                      _columnWithSections(),
-                      )),
-                ])
-
+          themeData: themeData,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: controller,
+                  physics: physics,
+                  padding: contentPadding ?? calculateDefaultPadding(context),
+                  child: width != null
+                      ? _withWidth(context, child: _columnWithSections())
+                      : _columnWithSections(),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _withWidth(BuildContext context, {required Widget child})
-  =>  LayoutBuilder(
-    builder: (context, constraints) {
-      return UnconstrainedBox(
+  Widget _withWidth(BuildContext context, {required Widget child}) =>
+      LayoutBuilder(builder: (context, constraints) {
+        return UnconstrainedBox(
             child: SizedBox(
-                width: width!=null ? (constraints.maxWidth > (width! + 16) ? width : constraints.maxWidth) : null,
-                child: child
-            ));
-    }
-  );
+              // Aggiunge un po' di respiro (16dp)
+                width: width != null
+                    ? (constraints.maxWidth > (width! + 16)
+                    ? width
+                    : constraints.maxWidth)
+                    : null,
+                child: child));
+      });
 
-  EdgeInsets calculateDefaultPadding(
-      BuildContext context) {
+  EdgeInsets calculateDefaultPadding(BuildContext context) {
     if (MediaQuery.of(context).size.width > 810) {
+      // Su schermi larghi, nessun padding verticale extra, ci pensa il layout
       return EdgeInsets.zero;
     } else {
-      return EdgeInsets.symmetric(vertical: 20);
+      // Su mobile, un po' di spazio sopra e sotto
+      return const EdgeInsets.symmetric(vertical: 16);
     }
-
-
   }
-Widget _columnWithSections(){
-    return Column(
 
+  Widget _columnWithSections() {
+    return Column(
       children: List.generate(sections.length, (index) {
         if (automaticKeepAlive ?? false) {
           return AutomaticKeepAliveProxy(child: sections[index]);
         }
         return sections[index];
-      }
-      ),
-    );
-}
-}
-/*class SettingsScroll extends StatelessWidget {
-  const SettingsScroll({
-    required this.sections,
-    this.shrinkWrap = false,
-    this.physics,
-    this.lightTheme,
-    this.darkTheme,
-    this.brightness,
-    this.contentPadding,
-    this.applicationType = ApplicationType.material,
-    this.cacheExtent,
-    this.controller,
-    this.automaticKeepAlive,
-    this.alignment,
-    Key? key,
-  }) : super(key: key);
-
-  final bool shrinkWrap;
-  final ScrollPhysics? physics;
-  final SettingsThemeData? lightTheme;
-  final SettingsThemeData? darkTheme;
-  final Brightness? brightness;
-  final EdgeInsetsGeometry? contentPadding;
-  final List<Widget> sections;
-  final ApplicationType applicationType;
-  final double? cacheExtent;
-  final ScrollController? controller;
-  final bool? automaticKeepAlive;
-  final Alignment? alignment;
-
-  @override
-  Widget build(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-
-    final themeData = ThemeProvider.getTheme(
-      context: context,
-      brightness: brightness,
-    ).merge(theme: brightness == Brightness.dark ? darkTheme : lightTheme);
-
-    return Container(
-      color: themeData.settingsListBackground,
-      width: MediaQuery.of(context).size.width,
-      alignment: alignment ?? Alignment.topCenter,
-      child: ConstrainedBox(
-        constraints: BoxConstraints(),
-        child: SettingsTheme(
-          themeData: themeData,
-          child:
-          SingleChildScrollView(
-            controller: controller,
-            physics: physics,
-            padding: contentPadding ?? calculateDefaultPadding(context),
-
-            child:
-            Column(
-              children: List.generate(sections.length, (index) {
-                if (automaticKeepAlive ?? false) {
-                  return AutomaticKeepAliveProxy(child: sections[index]);
-                }
-                return sections[index];
-              }
-              ),
-            ),
-          )
-
-        ),
-      ),
+      }),
     );
   }
-
-  EdgeInsets calculateDefaultPadding(
-      BuildContext context) {
-    if (MediaQuery.of(context).size.width > 810) {
-      return EdgeInsets.zero;
-    } else {
-      return EdgeInsets.symmetric(vertical: 20);
-    }
-
-
-  }
-
-}*/
+}
