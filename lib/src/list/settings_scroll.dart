@@ -22,6 +22,7 @@ class SettingsScroll extends StatelessWidget {
     this.automaticKeepAlive,
     this.alignment,
     this.width,
+    this.backgroundColor,
     Key? key,
   }) : super(key: key);
 
@@ -41,11 +42,14 @@ class SettingsScroll extends StatelessWidget {
   ///dimensione orizzontale, lasciare null usare tutto lo spazio disponibile.
   final double? width;
 
+  /// Colore della superficie dietro alle sezioni. Se non specificato rimane
+  /// trasparente, cosi il contenitore dell'app puo gestire sfondi e tonalita.
+  final Color? backgroundColor;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final brightness = theme.brightness;
-    final colorScheme = theme.colorScheme;
 
     // Recuperiamo il tema legacy se serve, ma useremo principalmente M3 nativo
     final themeData = ThemeProvider.getTheme(
@@ -54,9 +58,8 @@ class SettingsScroll extends StatelessWidget {
     ).merge(theme: brightness == Brightness.dark ? darkTheme : lightTheme);
 
     return Container(
-      // M3: Sfondo neutro (Surface) per far risaltare le card delle sezioni
       decoration: BoxDecoration(
-        color: colorScheme.surface,
+        color: backgroundColor ?? Colors.transparent,
       ),
       width: MediaQuery.of(context).size.width,
       alignment: alignment ?? Alignment.topCenter,
